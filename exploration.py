@@ -7,7 +7,7 @@ df = pd.read_csv("forPairPlot.csv")
 print(df.head())
 
 plt.subplots(figsize = (25,8))
-heatmap = sns.heatmap(df.corr(),vmin=-1, vmax = 1,annot = True, cmap = 'BrBG')
+heatmap = sns.heatmap(df.corr(),vmin=-1, vmax = 1,annot = True, cmap="RdYlGn")
 plt.savefig("heatmap.svg")
 
 
@@ -35,7 +35,7 @@ c_map = sns.diverging_palette(223, 14, as_cmap = True, sep = 100)
 c_map.set_bad('grey')  
   
 # Displaying the heatmap with the masking and the correct aspect ratio  
-sns.heatmap(corr, mask = masking, cmap = c_map, vmin = -1, vmax = 1, center = 1, linewidths = 1)  
+sns.heatmap(corr, mask = masking, cmap="RdYlGn", vmin = -1, vmax = 1, center = 1, linewidths = 1)  
 figure.suptitle('Heatmap visualizing Pearson Correlation Coefficient Matrix', fontsize = 14)  
 axis.tick_params(axis = 'both', which = 'major', labelsize = 10)
 

@@ -1,0 +1,17 @@
+import pandas as pd
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+
+# read in the data from a csv file and store it in a DataFrame
+data = pd.read_csv('forModel.csv')
+
+# separate the dependent and independent variables
+X = data[data.columns[:-1]]
+y = data[data.columns[-1]]
+
+# calculate the VIF for each independent variable
+vif = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
+
+# print the VIF for each independent variable
+for i, v in enumerate(vif):
+    print('VIF for variable %s: %.2f' % (X.columns[i], v))
+    
