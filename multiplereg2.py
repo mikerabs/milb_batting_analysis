@@ -6,7 +6,7 @@ from sklearn.metrics import r2_score
 data = pd.read_csv('forModel.csv')
 
 # separate the dependent and independent variables
-X = data[['wRCplus', 'wRAA', 'OBP', 'SLG', 'AVG', 'wRC','BABIP', 'ISO']]
+X = data[['wRAA', 'OBP','BABIP']]
 y = data['wOBA']
 
 # fit the model using the independent and dependent variables
