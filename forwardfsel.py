@@ -1,0 +1,30 @@
+# import the necessary libraries
+import pandas as pd
+from vowpalwabbit import pyvw
+from sklearn.model_selection import train_test_split
+
+# read in the data from a csv file and store it in a DataFrame
+data = pd.read_csv('forModel.csv')
+
+# separate the dependent and independent variables
+X = data[data.columns[:-1]]
+y = data[data.columns[-1]]
+
+# split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# create a Vowpal Wabbit learner and specify the features to use
+vw = pywv.vw(oaa=len(X.columns))
+
+# use forward selection to identify the most relevant features
+selected_features = pyvw.fs_search(X_train, y_train)
+
+# use the selected features to train a multiple regression model
+model = LinearRegression().fit(X_train[selected_features], y_train)
+
+# evaluate the performance of the model on the testing data
+y_pred = model.predict(X_test[selected_features])
+accuracy = r2_score(y_test, y_pred)
+
+# print the accuracy of the model
+print(f'Accuracy: {accuracy:.2f}')
